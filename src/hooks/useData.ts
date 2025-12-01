@@ -18,7 +18,7 @@ export const useData = (aggregation: Aggregation = 'day') => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const res = await fetch('/data.json');
+                const res = await fetch(`${import.meta.env.BASE_URL}data.json`);
                 if (!res.ok) throw new Error('Failed to load data');
                 const data: RawData = await res.json();
                 setRawData(data);
