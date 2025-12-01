@@ -1,0 +1,49 @@
+.container {
+  padding: 20px 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.chartWrapper {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  padding-bottom: 16px; /* ensure bottom content like legend isn't clipped */
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 16px 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 12px 14px;
+  }
+  .chartWrapper {
+    margin-top: 12px;
+  }
+}
+
+.loadingContainer,
+.errorContainer,
+.emptyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  font-size: 18px;
+  color: #666;
+}
+
+.errorContainer {
+  color: #d32f2f;
+}
+
+.emptyContainer {
+  color: #f57c00;
+}

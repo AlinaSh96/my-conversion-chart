@@ -1,0 +1,74 @@
+.controlsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--surface);
+  color: var(--text);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.controlsLeft {
+  display: flex;
+  gap: 15px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.controlsRight {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.zoomButtons {
+  display: flex;
+  gap: 5px;
+}
+
+button {
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+.variationsSelect, .rangeSelector, .lineStyleSelector {
+  font-size: 14px;
+  padding: 4px 8px;
+  min-width: 150px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .variationsSelect, .rangeSelector, .lineStyleSelector {
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 700px) {
+  .controlsContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .controlsLeft, .controlsRight {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .variationsSelect, .rangeSelector, .lineStyleSelector {
+    min-width: 100%;
+  }
+}
