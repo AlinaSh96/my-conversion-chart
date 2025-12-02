@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Controls.module.css';
-import type { Aggregation } from '../../types';
+import { Aggregation } from '../../types';
 import { makeT } from '../../constants/translations';
 
 const t = makeT('en');
@@ -20,8 +20,8 @@ const RangeSelector: React.FC<RangeSelectorProps> = ({ aggregation, setAggregati
         value={aggregation}
         onChange={(e) => setAggregation(e.target.value as Aggregation)}
       >
-        <option value="day">{t('day')}</option>
-        <option value="week">{t('week')}</option>
+        <option value={Aggregation.Day}>{t('day')}</option>
+        <option value={Aggregation.Week}>{t('week')}</option>
       </select>
     </>
   );

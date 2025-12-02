@@ -4,7 +4,7 @@ import VariationsSelector from './VariationsSelector';
 import RangeSelector from './RangeSelector';
 import LineStyleSelector from './LineStyleSelector';
 import ExportButton from '../ExportButton/ExportButton';
-import { LineStyle, Theme, type Aggregation } from '../../types';
+import { LineStyle, Theme, Aggregation } from '../../types';
 import { makeT } from '../../constants/translations';
 
 const t = makeT('en');

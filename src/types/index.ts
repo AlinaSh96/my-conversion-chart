@@ -13,7 +13,10 @@ export interface ChartPointBase {
 }
 export type ChartPoint = ChartPointBase & Record<string, number | string | null>;
 
-export type Aggregation = 'day' | 'week';
+export enum Aggregation {
+  Day = 'day',
+  Week = 'week',
+}
 
 export enum Theme {
   Light = 'light',

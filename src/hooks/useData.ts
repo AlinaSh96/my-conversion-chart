@@ -1,9 +1,10 @@
 import { useState, useEffect, useMemo } from 'react';
-import type { RawData, ChartPoint, Aggregation } from '../types';
+import type { RawData, ChartPoint } from '../types';
+import { Aggregation } from '../types';
 import { transformToChartData, getVariationNames } from '../lib/dataTransform';
 
 
-export const useData = (aggregation: Aggregation = 'day') => {
+export const useData = (aggregation: Aggregation = Aggregation.Day) => {
     const [rawData, setRawData] = useState<RawData | null>(null);
     const [chartData, setChartData] = useState<ChartPoint[]>([]);
     const [loading, setLoading] = useState<boolean>(true);

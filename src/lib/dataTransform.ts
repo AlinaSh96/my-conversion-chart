@@ -1,4 +1,5 @@
-import type { RawData, ChartPoint, Aggregation } from '../types';
+import type { RawData, ChartPoint } from '../types';
+import { Aggregation } from '../types';
 import { parseISO, format, startOfWeek } from 'date-fns';
 import { DEFAULT_VARIATION_ID } from '../constants/chart';
 
@@ -7,14 +8,14 @@ const calculateConversionRate = (visits: number, conversions: number): number =>
 
 export const transformToChartData = (
   raw: RawData,
-  aggregation: Aggregation = 'day'
+  aggregation: Aggregation = Aggregation.Day
 ): ChartPoint[] => {
   const { variations, data } = raw;
   const result: ChartPoint[] = [];
 
   data.forEach((day) => {
     let dateKey = day.date;
-    if (aggregation === 'week') {
+    if (aggregation === Aggregation.Week) {
       const weekStart = startOfWeek(parseISO(day.date), { weekStartsOn: 1 });
       dateKey = format(weekStart, 'yyyy-MM-dd');
     }

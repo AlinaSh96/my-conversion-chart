@@ -2,20 +2,18 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import ConversionChart from '../components/Chart/ConversionChart/index';
 import Controls from '../components/Controls/Controls';
 import { useData } from '../hooks/useData';
-import { LineStyle, Theme, type Aggregation } from '../types';
+import { LineStyle, Theme, Aggregation } from '../types';
 import { MIN_VISIBLE_POINTS, ZOOM_STEP_RATIO, ZOOM_OUT_RATIO } from '../constants/chart';
 import styles from './Main.module.css';
 
 const Main: React.FC = () => {
     const chartRef = useRef<HTMLDivElement | null>(null);
     const [theme, setTheme] = useState<Theme>(Theme.Light);
-    const [aggregation, setAggregation] = useState<Aggregation>('day');
+    const [aggregation, setAggregation] = useState<Aggregation>(Aggregation.Day);
     const { chartData, variationNames, loading, error } = useData(aggregation);
 
     const [selectedVariation, setSelectedVariation] = useState<string>('all');
     const [lineStyle, setLineStyle] = useState<LineStyle>(LineStyle.Line);
-
-    // Диапазон видимых точек для Zoom: индекс начала и конца
     const [visibleRange, setVisibleRange] = useState<[number, number] | null>(null);
 
     // Drag state for panning
@@ -50,7 +48,7 @@ const Main: React.FC = () => {
     const handleResetZoom = useCallback(() => setVisibleRange(null), []);
 
     const handleMouseDown = useCallback((e: React.MouseEvent) => {
-        if (visibleRange === null) return; // Only pan when zoomed
+        if (visibleRange === null) return;
         e.preventDefault();
         setIsDragging(true);
         setDragStart(e.clientX);
@@ -58,19 +56,13 @@ const Main: React.FC = () => {
     }, [visibleRange, startIndex, endIndex]);
 
     const handleMouseMove = useCallback((e: React.MouseEvent) => {
-        // Movement handled by global listener
         e.preventDefault();
-    }, []);
-
-    const handleMouseUp = useCallback(() => {
-        // Cleanup handled by global listener
     }, []);
 
     const toggleTheme = useCallback(() => {
         setTheme(theme === Theme.Light ? Theme.Dark : Theme.Light);
     }, [theme]);
 
-    // Sync global theme class for page background and default elements
     useEffect(() => {
         const el = document.documentElement;
         if (theme === Theme.Dark) {
@@ -82,7 +74,6 @@ const Main: React.FC = () => {
         }
     }, [theme]);
 
-    // Global mouse handlers for drag to work outside chart area
     useEffect(() => {
         const handleGlobalMouseMove = (e: MouseEvent) => {
             if (!isDragging || !dragStartRange.current) return;
@@ -107,7 +98,6 @@ const Main: React.FC = () => {
                 newStart = newEnd - visibleLength + 1;
             }
             
-            // Update drag start position for next move
             setDragStart(e.clientX);
             dragStartRange.current = [newStart, newEnd];
             setVisibleRange([newStart, newEnd]);
@@ -176,8 +166,6 @@ const Main: React.FC = () => {
                 className={styles.chartWrapper}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
                 style={{ 
                     cursor: isDragging ? 'grabbing' : (visibleRange !== null ? 'grab' : 'default'),
                     userSelect: 'none',
