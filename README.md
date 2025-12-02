@@ -2,6 +2,8 @@
 
 Interactive React application for visualizing A/B testing data with conversion rate charts.
 
+🔗 **Live Demo**: https://alinash96.github.io/my-conversion-chart/
+
 ## Features
 
 - **Interactive Charts** — Built with Recharts for smooth data visualization
@@ -16,7 +18,7 @@ Interactive React application for visualizing A/B testing data with conversion r
 - **PNG Export** — Export charts as high-quality images
 - **Internationalization Ready** — Centralized translations system
 
-## Quick Start
+## Development
 
 ```bash
 # Install dependencies
@@ -28,14 +30,9 @@ npm run dev
 # Build for production
 npm run build
 
-# Lint check
-npm run lint
-
 # Preview production build
 npm run preview
 ```
-
-The app will open at `http://localhost:5173`
 
 ## Project Structure
 
@@ -98,37 +95,6 @@ Conversion rates are calculated as `(conversions / visits) * 100`.
 - **Missing Data Handling**: When a variation has missing data points, they are rendered as `null`. For single variation view, points are connected (`connectNulls`). For "All variations" view, gaps are shown to indicate missing data.
 - **Responsive Layout**: Controls wrap on smaller screens; chart adapts to container size.
 - **Axis Adaptation**: X-axis range adjusts based on selected variation's available data.
-
-## Deployment
-
-This project is configured for GitHub Pages deployment.
-
-### Setup Steps:
-
-1. **Create GitHub Repository**: Create a new repository on GitHub (e.g., `my-conversion-chart`)
-
-2. **Update Base Path**: If your repo name is different, update `base` in `vite.config.ts`:
-   ```ts
-   base: '/your-repo-name/',
-   ```
-
-3. **Push to GitHub**:
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-   git push -u origin main
-   ```
-
-4. **Enable GitHub Pages**:
-   - Go to your repository Settings → Pages
-   - Source: GitHub Actions
-   - The workflow will automatically deploy on push to `main`
-
-5. **Access Your Site**: 
-   After deployment completes, your site will be available at:
-   `https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/`
 
 ## License
 
